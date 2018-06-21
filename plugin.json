@@ -1,0 +1,13 @@
+{
+  "id": "mattermost-gyazo",
+  "name": "Gyazo",
+  "description": "Format messages with gyazo links.",
+  "version": "0.1.0",
+  "backend": {
+    "executable": "server/plugin.exe"
+  },
+  "settings_schema": {
+    "footer": "No configuration necessary. For more information please see https://github.com/seansackowitz/mattermost-plugin-gyazo"
+  }
+}
+
