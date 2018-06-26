@@ -2,7 +2,7 @@
   "id": "mattermost-gyazo",
   "name": "Gyazo",
   "description": "Format messages with gyazo links.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "backend": {
     "executable": "server/plugin.exe"
   },

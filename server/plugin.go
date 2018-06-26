@@ -8,7 +8,6 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/mattermost/mattermost-server/mlog"
 	"github.com/mattermost/mattermost-server/model"
 	"github.com/mattermost/mattermost-server/plugin"
 )
@@ -73,13 +72,11 @@ func (p *Plugin) FormatPost(post *model.Post, gyazo string) *model.Post {
 	}
 	post.Message = "[Gyazo](" + gyazo + ")\n" + url
 
-	mlog.Error(post.Message)
 	return post
 }
 
 // MessageWillBePosted is invoked when a message is posted by a user before it is commited
 // to the database.
 func (p *Plugin) MessageWillBePosted(post *model.Post) (*model.Post, string) {
-	mlog.Error(post.Message)
 	return p.FilterPost(post)
 }
