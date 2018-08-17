@@ -5,7 +5,6 @@ import (
 	"net/http"
 	"regexp"
 	"strings"
-	"sync/atomic"
 	"time"
 
 	"github.com/mattermost/mattermost-server/model"
@@ -14,28 +13,11 @@ import (
 
 // Plugin the main struct for everything
 type Plugin struct {
-	api   plugin.API
-	links atomic.Value
+	plugin.MattermostPlugin
 }
 
 // OnActivate is invoked when the plugin is activated.
-func (p *Plugin) OnActivate(api plugin.API) error {
-	p.api = api
-
-	if err := p.OnConfigurationChange(); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// OnConfigurationChange is invoked when configuration changes may have been made.
-func (p *Plugin) OnConfigurationChange() error {
-	var c Configuration
-	err := p.api.LoadPluginConfiguration(&c)
-	if err != nil {
-		return err
-	}
+func (p *Plugin) OnActivate() error {
 
 	return nil
 }
@@ -77,6 +59,6 @@ func (p *Plugin) FormatPost(post *model.Post, gyazo string) *model.Post {
 
 // MessageWillBePosted is invoked when a message is posted by a user before it is commited
 // to the database.
-func (p *Plugin) MessageWillBePosted(post *model.Post) (*model.Post, string) {
+func (p *Plugin) MessageWillBePosted(c *plugin.Context, post *model.Post) (*model.Post, string) {
 	return p.FilterPost(post)
 }
