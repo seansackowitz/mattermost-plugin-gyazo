@@ -22,6 +22,7 @@ server/vendor
 node_modules
 .npminstall
 webapp/dist
+server/dist
 
 # Mac
 *.swp
